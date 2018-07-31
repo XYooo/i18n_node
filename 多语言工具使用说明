@@ -1,0 +1,45 @@
+多语言标记为$i18n{...}$i18n-end
+
+工具包含两个js脚本
+1.i18n_tool.1.js
+2.i18n_tool.2.js
+
+使用时首先运行 node i18n_tool.1.js dir
+dir为要扫描的资源根目录,要求为绝对路径,win系统格式为c:\\Users\\liutom\\frontwalker\\walker\\test,linux系统格式为/Users/liutom/frontwalker/walker/test
+运行后会在dir上级目录新建i18n目录,存放生成的多语言文件,其中以.cn.i18n结尾的文件为所要翻译的中文文件。
+文件内容为
+{"key":"second.js0","value":"我的第一段"}
+其中value为所需要翻译的语言
+翻译人员需要在相同目录下新建多余文件,如英文,以.en.i18n结尾,内容只改变value值
+将"我的第一段"翻译为"my first paragraph"
+{"key":"second.js0","value":"my first paragraph"}
+
+然后运行 node i18n_tool.2.js i18n_dir
+i18n_dir新建i18n目录绝对路径,然后会在i18n_dir上级目录新建不同语种目录
+
+
+新增
+i18n_tool_addTags.js
+自动添加标签$i18n 和 $i18n-end
+
+i18n_tool_exportExcel.js
+执行命令： node i18n_tool.exportExcel.js i18n_dir excelName lan
+参数1:i18n_dir 同上，
+参数2:但是需要添加一个excel的名字，不然默认default
+参数3:导出不同语言的文件，默认导出所有的.cn.i18n文件
+目的：给翻译人员看
+
+i18n_tool_importExcel.js
+执行命令： node i18n_tool_importExcel.js i18n_dir excelTranslateName
+参数1:i18n_dir同上
+参数2:excelTranslateName: 翻译完的excel文件，目前默认值生成.en.i18n 文件
+
+目的：将翻译完的文件生成相应.en.i18n文件
+
+使用i18n_tool_exportExcel.js， 分别提取项目中所有的cn.i18n，.en.i18n文件,来对比翻译人员的翻译excel，
+手工对比吧
+
+
+i18n_tool_compareExcel.js translateFile(专业人员翻译好的) newFile（最新的抽取excel）
+校验方式：（友情提示）
+
